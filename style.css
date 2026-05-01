@@ -470,6 +470,7 @@ body.nav-open .nav-toggle span:last-child {
 
 .about,
 .services,
+.packages,
 .testimonials,
 .faq,
 .cta-section {
@@ -591,6 +592,7 @@ body.nav-open .nav-toggle span:last-child {
 }
 
 .service-card,
+.package-card,
 .testimonial-card,
 .faq-list details {
     border: 1px solid var(--line-soft);
@@ -640,6 +642,147 @@ body.nav-open .nav-toggle span:last-child {
     display: flex;
     justify-content: center;
     margin-top: 2.25rem;
+}
+
+.packages {
+    position: relative;
+    padding: clamp(4.8rem, 8vw, 7.2rem) 0;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.packages::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.075), transparent 24rem),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 44%);
+}
+
+.packages .container {
+    position: relative;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.package-card {
+    position: relative;
+    display: grid;
+    align-content: space-between;
+    min-height: 17.5rem;
+    padding: 1.35rem;
+    overflow: hidden;
+    transition: transform 0.3s var(--ease), border-color 0.3s ease, background 0.3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.26);
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.package-card-featured {
+    border-color: rgba(255, 255, 255, 0.42);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.022)),
+        #0b0b0b;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.package-card-featured::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 28%);
+    opacity: 0.55;
+}
+
+.package-badge {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 1;
+    padding: 0.38rem 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    color: var(--white);
+    font-size: 0.58rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.package-head {
+    display: grid;
+    gap: 1rem;
+    max-width: 12rem;
+}
+
+.package-icon {
+    display: grid;
+    width: 2.55rem;
+    height: 2.55rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.35rem;
+}
+
+.package-head span:last-child {
+    font-size: 1.35rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.package-card p {
+    max-width: 14rem;
+    margin: 1.5rem 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+}
+
+.package-card strong {
+    display: block;
+    color: var(--white);
+    font-size: clamp(1.65rem, 2.8vw, 2.45rem);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.package-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 0.8rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.package-benefits span {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    color: #d8d8d8;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.package-benefits i {
+    flex: 0 0 auto;
+    color: var(--white);
+    font-size: 1rem;
 }
 
 .testimonials {
@@ -897,8 +1040,18 @@ body.nav-open .nav-toggle span:last-child {
     }
 
     .services-grid,
+    .packages-grid,
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .package-benefits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .package-benefits .btn {
+        grid-column: 1 / -1;
+        justify-self: start;
     }
 
     .testimonials-grid .section-heading {
@@ -1007,12 +1160,23 @@ body.nav-open .nav-toggle span:last-child {
     }
 
     .services-grid,
+    .packages-grid,
     .testimonials-grid {
         grid-template-columns: 1fr;
     }
 
-    .service-card {
+    .service-card,
+    .package-card {
         min-height: auto;
+    }
+
+    .package-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .package-benefits .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .cta-card {
