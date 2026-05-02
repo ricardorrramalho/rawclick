@@ -4,6 +4,7 @@ const navLinks = document.querySelectorAll(".site-nav a");
 const revealItems = document.querySelectorAll(".reveal");
 const year = document.querySelector("#year");
 const faqItems = document.querySelectorAll(".faq-list details");
+let headerUpdatePending = false;
 
 if (year) {
     year.textContent = new Date().getFullYear();
@@ -11,10 +12,20 @@ if (year) {
 
 const updateHeader = () => {
     header?.classList.toggle("scrolled", window.scrollY > 18);
+    headerUpdatePending = false;
+};
+
+const requestHeaderUpdate = () => {
+    if (headerUpdatePending) {
+        return;
+    }
+
+    headerUpdatePending = true;
+    window.requestAnimationFrame(updateHeader);
 };
 
 updateHeader();
-window.addEventListener("scroll", updateHeader, { passive: true });
+window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
 
 const closeMenu = () => {
     document.body.classList.remove("nav-open");
